@@ -1,0 +1,11 @@
+{
+    "name": "express-serve",
+    "dependencies": {
+        "express": "registry:npm/express#4.14.0+20160925001530"
+    },
+    "globalDependencies": {
+        "bluebird": "registry:dt/bluebird#3.0.0+20161007114152",
+        "morgan": "registry:dt/morgan#1.7.0+20160524142355",
+        "node": "registry:dt/node#6.0.0+20161110151007"
+    }
+}
