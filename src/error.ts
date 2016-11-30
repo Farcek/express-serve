@@ -1,6 +1,9 @@
 
 export interface IError {
-
+    code: number
+    message: string
+    name: string
+    stack?: string;
 }
 export class NotFound extends Error implements IError {
     code = 404
@@ -11,6 +14,7 @@ export class NotFound extends Error implements IError {
         this.stack = (new Error()).stack;
     }
 }
+
 
 export class BadRequest extends Error implements IError {
     code = 400

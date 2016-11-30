@@ -1,4 +1,8 @@
 export interface IError {
+    code: number;
+    message: string;
+    name: string;
+    stack?: string;
 }
 export declare class NotFound extends Error implements IError {
     code: number;

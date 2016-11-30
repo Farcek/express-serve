@@ -24,8 +24,8 @@ export declare class ExpressServe {
     private options;
     constructor(name: string, options?: IOptions);
     accessLog(type?: AccessLogType, statusCode?: number): this;
-    router(mountPoint: string | RegExp, router: express.Router): this;
-    errorHandle(handle?: IErrorHandle, errorStack?: boolean): this;
+    router(mountPoint: string | RegExp, router: express.Handler): this;
+    errorHandle(handle?: IErrorHandle): this;
     private _preStart;
     onPreStart(action: IAction): this;
     private _postStart;

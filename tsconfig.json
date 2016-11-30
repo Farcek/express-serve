@@ -10,6 +10,6 @@
     "files": [
 
         "typings/index.d.ts",
-        "src/api-serve.ts"
+        "src/index.ts"
     ]
 }
