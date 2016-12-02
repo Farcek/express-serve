@@ -8,16 +8,27 @@ import * as IServe from 'express-serve';
 
 
 const pkg:{name:string} = require('../package.json');
-
-new IServe.ApiServe(pkg.name)
-    .accessLog(IServe.AccessLogType.common, 400)
-    .router('/api', ApiRouterFacotry())
-    .errorHandle(null, true)
+const wwwRoot = "/to/bar/foo";
+new IServe.ExpressServe(pkg.name)
+    .accessLog(IServe.AccessLogType.dev)
+    .viewengineSwig(path.join(wwwRoot, 'views'))
+    // public asset public
+    .serveStatic('/public', path.join(wwwRoot, 'public'))
+    .serveStatic('/bower_components', path.join(wwwRoot, 'bower_components'))
+    
+    .router('/api', new api.ApiRoot().root)    
+    .router(['/rs', '/resource'], ... )
+    //html
+    .router('/*', SysopRoute.index)
+    .errorHandle()
     .onPreStart(async () => {
-        //await ...
+        //**
     })
     .onPostStart(async () => {
-        //await ...
+        if (config.sysop.runCron) {
+            ICron.start();
+            console.log(`starting cron`);
+        }
     })
-    .start(3000);
+    .start(3000)
 ```
