@@ -3,8 +3,6 @@ import * as morgan from 'morgan';
 import * as bluebird from 'bluebird';
 import * as errors from './error';
 
-const extend = require('extend');
-
 export {
     errors as IErrors
 }
@@ -203,14 +201,14 @@ export class ExpressServe {
         this._viewEngine = true;
 
         let swig: { setDefaults: any, renderFile: any } = require('swig');
-        let defaultOptions: IViewengineOptions = {
-            cache: false,
-            varControls: ['[{', '}]'],
-            tagControls: ['[%', '%]'],
-            cmtControls: ['[#', '#]'],
+        let useOptions: IViewengineOptions = {
+            cache: (options && options.cache) || false,
+            varControls: (options && options.varControls) || ['[{', '}]'],
+            tagControls:  (options && options.tagControls) || ['[%', '%]'],
+            cmtControls:  (options && options.cmtControls) ||['[#', '#]'],
         };
 
-        let useOptions: IViewengineOptions = extend(defaultOptions, options || {});
+        
 
 
         this.app.engine('html', swig.renderFile);
