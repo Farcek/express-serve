@@ -1,3 +1,4 @@
+/// <reference types="express" />
 import * as express from 'express';
 import * as errors from './error';
 export { errors as IErrors };
@@ -77,6 +78,7 @@ export declare class ExpressServe {
     constructor(name: string, options?: IOptions);
     accessLog(type?: AccessLogType, logMinStatusCode?: number): this;
     router(mountPoint: string | RegExp | (string | RegExp)[], ...router: express.Handler[]): this;
+    use(...handlers: express.Handler[]): this;
     serveStatic(mountPoint: string | RegExp | (string | RegExp)[], rootPath: string, options?: IServeStatic): this;
     errorHandle(handle?: IErrorHandle): this;
     private _preStart;

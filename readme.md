@@ -15,6 +15,8 @@ new IServe.ExpressServe(pkg.name)
     // public asset public
     .serveStatic('/public', path.join(wwwRoot, 'public'))
     .serveStatic('/bower_components', path.join(wwwRoot, 'bower_components'))
+
+    .use( ...  )    
     
     .router('/api', new api.ApiRoot().root)    
     .router(['/rs', '/resource'], ... )

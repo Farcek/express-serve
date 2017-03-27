@@ -120,6 +120,10 @@ export class ExpressServe {
         this.app.use(mountPoint, router);
         return this;
     }
+    use(...handlers: express.Handler[]) {
+        this.app.use(handlers);
+        return this;
+    }
 
     serveStatic(mountPoint: string | RegExp | (string | RegExp)[], rootPath: string, options?: IServeStatic) {
         this.app.use(mountPoint, express.static(rootPath, options));
@@ -237,7 +241,7 @@ export class ExpressServe {
                 next();
             }
         })
-        return  this;
+        return this;
     }
 }
 
