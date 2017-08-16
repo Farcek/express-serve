@@ -94,6 +94,7 @@ export interface IViewengineOptions {
     varControls?: [string, string];
     tagControls?: [string, string];
     cmtControls?: [string, string];
+    extends?: (swig: any) => void;
 }
 export interface ICrossdomainOptions {
     allowDomain?: string[];

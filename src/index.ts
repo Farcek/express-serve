@@ -204,11 +204,11 @@ export class ExpressServe {
         let useOptions: IViewengineOptions = {
             cache: (options && options.cache) || false,
             varControls: (options && options.varControls) || ['[{', '}]'],
-            tagControls:  (options && options.tagControls) || ['[%', '%]'],
-            cmtControls:  (options && options.cmtControls) ||['[#', '#]'],
+            tagControls: (options && options.tagControls) || ['[%', '%]'],
+            cmtControls: (options && options.cmtControls) || ['[#', '#]'],
         };
 
-        
+
 
 
         this.app.engine('html', swig.renderFile);
@@ -222,6 +222,11 @@ export class ExpressServe {
             cmtControls: useOptions.cmtControls,
             cache: useOptions.cache
         });
+
+        if (options && options.extends && typeof options.extends === 'function') {
+            options.extends(swig);
+        }
+
         return this;
     }
     crossdomain(options?: ICrossdomainOptions) {
@@ -248,6 +253,8 @@ export interface IViewengineOptions {
     varControls?: [string, string]
     tagControls?: [string, string]
     cmtControls?: [string, string]
+
+    extends?: (swig: any) => void
 }
 export interface ICrossdomainOptions {
     allowDomain?: string[]
